@@ -88,29 +88,29 @@ ekf_filter_node:
         # has no pose information, so the first six values would be meaningless in that case. Each vector defaults to all false
         # if unspecified, effectively making this parameter required for each sensor.
         odom0_config: [true,  true,  true,
-                       false, false, false,
-                       false, false, false,
-                       false, false, false,
+                       false, false, true,
+                       true, true, false,
+                       false, false, true,
                        false, false, false]
 
         # If you have high-frequency data or are running with a low frequency parameter value, then you may want to increase
         # the size of the subscription queue so that more measurements are fused.
         odom0_queue_size: 2
         
-        imu0: example/imu
+        # imu0: example/imu
 
-        imu0_config: [false, false, false,
-                      false,  false,  true,
-                      false, false, false,
-                      false,  false,  true,
-                      true,  true,  false]
-        imu0_differential: false
-        #imu0_relative: true
-        imu0_queue_size: 10
+        # imu0_config: [false, false, false,
+        #               false,  false,  true,
+        #               false, false, false,
+        #               false,  false,  true,
+        #               true,  true,  false]
+        # imu0_differential: false
+        # #imu0_relative: true
+        # imu0_queue_size: 10
 
-        # [ADVANCED] Some IMUs automatically remove acceleration due to gravity, and others don't. If yours doesn't, please set
-        # this to true, and *make sure* your data conforms to REP-103, specifically, that the data is in ENU frame.
-        imu0_remove_gravitational_acceleration: false
+        # # [ADVANCED] Some IMUs automatically remove acceleration due to gravity, and others don't. If yours doesn't, please set
+        # # this to true, and *make sure* your data conforms to REP-103, specifically, that the data is in ENU frame.
+        # imu0_remove_gravitational_acceleration: false
 
         # [ADVANCED]  The EKF and UKF models follow a standard predict/correct cycle. During prediction, if there is no
         # acceleration reference, the velocity at time t+1 is simply predicted to be the same as the velocity at time t. During
@@ -160,9 +160,9 @@ ekf_filter_node:
         # unspecified.
         # Note: the specification of covariance matrices can be cumbersome, so all matrix parameters in this package support
         # both full specification or specification of only the diagonal values.
-        process_noise_covariance: [0.25, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
-                                   0.0,    0.25, 0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
-                                   0.0,    0.0,    0.5, 0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
+        process_noise_covariance: [0.05, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
+                                   0.0,    0.05, 0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
+                                   0.0,    0.0,    0.05, 0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                                    0.0,    0.0,    0.0,    0.03, 0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                                    0.0,    0.0,    0.0,    0.0,    0.03, 0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                                    0.0,    0.0,    0.0,    0.0,    0.0,    0.06, 0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
